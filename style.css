@@ -1,0 +1,162 @@
+/* =========================
+   CHECKLIST CARD
+   ========================= */
+.checklist {
+  margin-top: 20px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  max-width: 90%;
+
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.18),
+    inset 0 0 15px rgba(255, 255, 255, 0.2);
+
+  animation: fadeUp 1s ease forwards;
+}
+
+/* Checklist Title */
+.checklist p {
+  font-size: 16px;
+  margin-bottom: 14px;
+  font-weight: 600;
+  color: #ff4d6d;
+}
+
+/* Checklist List */
+.checklist ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.checklist li {
+  font-size: 14px;
+  margin: 10px 0;
+  line-height: 1.5;
+  color: #333;
+  position: relative;
+  padding-left: 26px;
+}
+
+/* Heart Bullet */
+.checklist li::before {
+  content: "💖";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 16px;
+}
+
+/* Subtext */
+.checklist span {
+  display: block;
+  margin-top: 4px;
+  opacity: 0.75;
+  font-size: 13px;
+  color: #555;
+}
+
+/* =========================
+   IMAGES
+   ========================= */
+
+/* All images square by default */
+img {
+  width: min(65vw, 200px);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 20px;
+  margin: 16px;
+  box-shadow: 0 8px 16px rgba(0,0,0,.3);
+}
+
+/* Cake exception */
+#cake {
+  width: min(85vw, 280px);
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+/* =========================
+   SPECIAL MESSAGE PAGE
+   ========================= */
+#special {
+  background: linear-gradient(135deg, #ffe0ec, #fff1f7);
+  padding: 20px;
+  text-align: center;
+  animation: fadeUp 1.2s ease forwards;
+}
+
+.special-photo {
+  width: min(80vw, 260px);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 22px;
+  margin: 18px 0;
+  box-shadow: 0 12px 25px rgba(255, 77, 109, 0.35);
+}
+
+.special-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #444;
+  max-width: 90%;
+}
+
+/* =========================
+   ANIMATION
+   ========================= */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   MOBILE OPTIMIZATION
+   ========================= */
+@media (max-width: 480px) {
+
+  .checklist {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .checklist p {
+    font-size: 15px;
+  }
+
+  .checklist li {
+    font-size: 13px;
+  }
+
+  .checklist span {
+    font-size: 12px;
+  }
+
+  img {
+    width: 85vw;
+    max-width: 240px;
+    margin: 12px 0;
+  }
+
+  .special-photo {
+    width: 85vw;
+    max-width: 240px;
+  }
+
+  .special-text {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+}
+

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>It's Your Special Day 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Comic Sans MS',cursive;
+  background:linear-gradient(135deg,#ff9a9e,#fecfef);
+  text-align:center;
+  overflow:hidden;
+  transition:.5s ease;
+}
+
+/* Screens */
+.screen{
+  display:none;
+  height:100dvh;
+  width:100%;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  padding:20px;
+}
+.active{display:flex}
+
+/* Headings */
+h1{
+  font-size:clamp(28px,8vw,42px);
+  color:#ff6b9d;
+  animation:bounce 2s infinite;
+}
+h2{color:#ff6b9d}
+
+/* Buttons */
+button{
+  padding:16px 26px;
+  border:none;
+  border-radius:50px;
+  margin:12px;
+  font-size:18px;
+  cursor:pointer;
+  box-shadow:0 4px 10px rgba(0,0,0,.2);
+  transition:.3s;
+}
+button:hover{transform:scale(1.05)}
+
+.action{background:#ff4d6d;color:#fff}
+.yes{background:#ff6b9d;color:#fff}
+.no{background:#6c63ff;color:#fff}
+
+/* Images */
+img{
+  width:min(85vw,280px);
+  aspect-ratio:1/1;
+  object-fit:cover;
+  border-radius:20px;
+  margin:16px;
+  box-shadow:0 8px 16px rgba(0,0,0,.3);
+}
+
+/* Cake exception */
+#cake{
+  aspect-ratio:auto;
+  object-fit:contain;
+}
+
+/* Floating decor */
+.decor{
+  position:absolute;
+  font-size:28px;
+  bottom:-60px;
+  animation:float linear infinite;
+  pointer-events:none;
+}
+@keyframes float{
+  from{transform:translateY(0)}
+  to{transform:translateY(-120vh)}
+}
+
+/* Confetti */
+.confetti{
+  position:absolute;
+  width:10px;height:10px;
+  border-radius:50%;
+  animation:fall 3s linear forwards;
+}
+@keyframes fall{
+  from{transform:translateY(-10vh)}
+  to{transform:translateY(110vh)}
+}
+
+/* NO warning */
+.no-warning{
+  margin-top:14px;
+  font-size:15px;
+  color:#ff1744;
+  font-weight:600;
+  animation:shake .6s ease;
+}
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  25%{transform:translateX(-6px)}
+  50%{transform:translateX(6px)}
+  75%{transform:translateX(-4px)}
+}
+
+/* Heart photo */
+.heart-wrapper{
+  position:relative;
+  width:220px;
+  height:200px;
+  margin:20px auto;
+  animation:heartBeat 1.6s infinite;
+}
+.heart-wrapper::before,
+.heart-wrapper::after{
+  content:"";
+  position:absolute;
+  width:110px;
+  height:180px;
+  background:#ff6b9d;
+  border-radius:110px 110px 0 0;
+  top:0;
+  box-shadow:0 0 25px rgba(255,107,157,.8);
+}
+.heart-wrapper::before{
+  left:110px;
+  transform:rotate(-45deg);
+  transform-origin:0 100%;
+}
+.heart-wrapper::after{
+  left:0;
+  transform:rotate(45deg);
+  transform-origin:100% 100%;
+}
+.heart-photo{
+  position:absolute;
+  top:18px;
+  left:18px;
+  width:185px;
+  height:165px;
+  object-fit:cover;
+  border-radius:50%;
+  z-index:2;
+}
+@keyframes heartBeat{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.08)}
+}
+
+/* Special page */
+#special{
+  background:linear-gradient(135deg,#ffe0ec,#fff1f7);
+}
+.special-photo{
+  width:260px;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  border-radius:22px;
+}
+.special-text{
+  font-size:15px;
+  line-height:1.6;
+  color:#444;
+  max-width:90%;
+}
+
+/* Teddy ending */
+.teddy-box{
+  margin-top:22px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.teddy{
+  font-size:64px;
+  animation:teddyBounce 1.6s infinite;
+}
+.teddy-text{
+  font-size:16px;
+  font-weight:600;
+  color:#ff4d6d;
+}
+@keyframes teddyBounce{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+
+@keyframes bounce{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="screen active" id="s1">
+  <h1>🎉 Hello 🎉</h1>
+  <h2>Kashish Jii 💖</h2>
+</div>
+
+<div class="screen" id="s2">
+  <h2>I wanted to make something special ❤️</h2>
+  <img src="images/photo2.jpeg">
+</div>
+
+<div class="screen" id="s3">
+  <h2>Do you wanna see what I made?</h2>
+  <button class="yes" onclick="next(4)">Yes 💖</button>
+  <button class="no" onclick="showNoText()">No 💖</button>
+  <div id="noText"></div>
+</div>
+
+<div class="screen" id="s4">
+  <button class="action" onclick="lightsOn()">Lights On 💡</button>
+</div>
+
+<div class="screen" id="s5">
+  <button class="action" onclick="decorate()">Decorate 🎉</button>
+</div>
+
+<div class="screen" id="s6">
+  <button class="action" onclick="balloons()">Fly the Balloons 🎈</button>
+</div>
+
+<div class="screen" id="s7">
+  <div class="heart-wrapper">
+    <img src="images/photo3.jpg" class="heart-photo">
+  </div>
+  <button class="action" onclick="show('s8')">Let’s Cut the Cake 🎂</button>
+</div>
+
+<div class="screen" id="s8">
+  <img src="images/cake.jpg" id="cake">
+  <button class="action" onclick="cutCake()">Cut the Cake 💖</button>
+</div>
+
+<div class="screen" id="final">
+  <h1>Happy Birthday 🎂</h1>
+  <img src="images/photo4.jpg">
+  <p>You are beautiful, special, and mean a lot to me ❤️</p>
+</div>
+
+<div class="screen" id="special">
+  <img src="images/photo5.jpg" class="special-photo">
+  <p class="special-text">
+    I may not always say it out loud,<br>
+    but you mean more to me than you know.<br><br>
+    Stay the way you are — beautiful, kind,<br>
+    and incredibly special to me 🌸
+  </p>
+
+  <!-- TEDDY -->
+  <div class="teddy-box">
+    <div class="teddy">🧸</div>
+    <div class="teddy-text">Stay Happy 💖</div>
+  </div>
+</div>
+
+<script>
+const music=document.getElementById("music")
+
+function show(id){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"))
+  document.getElementById(id).classList.add("active")
+}
+function next(n){show("s"+n)}
+
+setTimeout(()=>next(2),2000)
+setTimeout(()=>next(3),4200)
+
+function showNoText(){
+  document.getElementById("noText").innerHTML=
+  "😏 There is NO option for doing NO!<br>You HAVE to see it 💖"
+  document.getElementById("noText").className="no-warning"
+}
+
+function lightsOn(){
+  document.body.style.background="linear-gradient(135deg,#fff,#f1f1f1)"
+  document.body.style.boxShadow="inset 0 0 100px rgba(255,255,255,.5)"
+  music.volume=.4
+  music.play()
+  next(5)
+}
+
+function decorate(){
+  ["💖","⭐","🎉"].forEach(icon=>{
+    for(let i=0;i<16;i++)spawn(icon)
+  })
+  next(6)
+}
+
+function balloons(){
+  for(let i=0;i<100;i++)spawn("🎈")
+  setTimeout(()=>next(7),800)
+}
+
+function spawn(icon){
+  let d=document.createElement("div")
+  d.className="decor"
+  d.innerText=icon
+  d.style.left=Math.random()*100+"vw"
+  d.style.animationDuration=3+Math.random()*4+"s"
+  document.body.appendChild(d)
+  setTimeout(()=>d.remove(),8000)
+}
+
+function cutCake(){
+  cake.classList.add("cut")
+  for(let i=0;i<80;i++){
+    let c=document.createElement("div")
+    c.className="confetti"
+    c.style.left=Math.random()*100+"vw"
+    c.style.background=`hsl(${Math.random()*360},100%,50%)`
+    document.body.appendChild(c)
+    setTimeout(()=>c.remove(),3000)
+  }
+  setTimeout(()=>show("final"),1200)
+  setTimeout(()=>show("special"),4200)
+}
+</script>
+
+</body>
+</html>
+
+
+
